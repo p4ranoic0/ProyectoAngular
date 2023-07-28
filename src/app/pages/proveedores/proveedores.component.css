@@ -1,0 +1,6 @@
+th span {
+  visibility: hidden;
+}
+th.order-active span {
+  visibility: visible;
+}

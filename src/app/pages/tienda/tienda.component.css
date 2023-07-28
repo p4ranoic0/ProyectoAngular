@@ -1,0 +1,5 @@
+.list-group-item.active {
+
+  background-color: var(--color2);
+  border-color: var(--color2);
+}

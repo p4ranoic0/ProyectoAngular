@@ -1,0 +1,59 @@
+<header id="page-header">
+  <div class="container">
+    <h1>Proveedores</h1>
+    <p>{{mensaje}}</p>
+  </div>
+</header>
+<section class="padded">
+  <div class="container">
+    <div class="mb-3">
+      <label for="form-label">Buscar Empresa</label>
+      <input type="text" class="form-control" [(ngModel)]="proveedoresFilter.nombreempresa"
+        placeholder="Ëscribe el nombre de la empresa">
+    </div>
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th (click)="setOrder('nombreempresa')" [class.order-active]="order==='nombreempresa'">
+            <span [hidden]="!reverse"><i class="bi bi-chevron-down"></i></span>
+            <span [hidden]="reverse"><i class="bi bi-chevron-up"></i></span>
+            Nombre
+          </th>
+          <th (click)="setOrder('nombrecontacto')" [class.order-active]="order==='nombrecontacto'">
+            <span [hidden]="!reverse"><i class="bi bi-chevron-down"></i></span>
+            <span [hidden]="reverse"><i class="bi bi-chevron-up"></i></span>Contacto
+          </th>
+          <th (click)="setOrder('cargocontacto')" [class.order-active]=" order==='cargocontacto'">
+            <span [hidden]="!reverse"><i class="bi bi-chevron-down"></i></span>
+            <span [hidden]="reverse"><i class="bi bi-chevron-up"></i></span>Cargo
+          </th>
+          <th (click)="setOrder('pais')" [class.order-active]="order==='pais'">
+            <span [hidden]="!reverse"><i class="bi bi-chevron-down"></i></span>
+            <span [hidden]="reverse"><i class="bi bi-chevron-up"></i></span>Pais
+          </th>
+          <th (click)="setOrder('ciudad')" [class.order-active]="order==='ciudad'">
+            <span [hidden]="!reverse"><i class="bi bi-chevron-down"></i></span>
+            <span [hidden]="reverse"><i class="bi bi-chevron-up"></i></span>Ciudad
+          </th>
+          <th (click)="setOrder('telefono')" [class.order-active]="order==='telefono'"> <span [hidden]="!reverse"><i
+                class="bi bi-chevron-down"></i></span>
+            <span [hidden]="reverse"><i class="bi bi-chevron-up"></i></span>
+            Teléfono
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let item of listaProveedores | filterBy:proveedoresFilter | orderBy:order :reverse | paginate: {
+            itemsPerPage: 10, currentPage: p }">
+          <td>{{item.nombreempresa}}</td>
+          <td>{{item.nombrecontacto}}</td>
+          <td>{{item.cargocontacto}}</td>
+          <td>{{item.pais}}</td>
+          <td>{{item.ciudad}}</td>
+          <td>{{item.telefono}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+  </div>
+</section>

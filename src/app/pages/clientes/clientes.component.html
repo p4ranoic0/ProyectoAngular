@@ -1,0 +1,34 @@
+<header id="page-header">
+  <div class="container">
+    <h1>Clientes</h1>
+  </div>
+</header>
+<section class="padded">
+  <div class="container">
+    <div class="mb-5">
+      <label for="form-label">Buscar Cliente</label>
+      <input type="text" class="form-control" [(ngModel)]="clientesFilter.nombres"
+        placeholder="Escribe el nombre del Cliente">
+    </div>
+    <div class="row row-cols-xl-6 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 mb-4">
+
+      <div class="col text-center" *ngFor="let item of listaClientes | filterBy:clientesFilter | orderBy:order :reverse | paginate: {
+        itemsPerPage: 12, currentPage: p }">
+        <h3 class="fw-bold mb-3" style="color:var(--color4)">{{item.nombres}}</h3>
+        <svg class=" bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"
+          role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="var(--color2)"></rect>
+        </svg>
+        <h5 class="fs-5 mt-3">{{item.cargo}}</h5>
+
+        <h6 class="fw-light">{{item.telefono}}</h6>
+        <h6 class="fw-light">{{item.ciudad}} - {{item.pais}} </h6>
+
+      </div>
+
+    </div>
+    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"
+      class="text-center"></pagination-controls>
+  </div>
+
+</section>
